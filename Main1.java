@@ -21,27 +21,49 @@ class Book {
         this.quantity = quantity;
         this.available = available;
     }
+    public int getIsbn() { 
+        return isbn; 
+    }
+    public void setIsbn(int isbn) { 
+        this.isbn = isbn; 
+    }
+    public String getTitle() { 
+        return title; 
+    }
+    public void setTitle(String title) { 
+        this.title = title;
+    }
+    public String getAuthor() { 
+        return author; 
+    }
+    public void setAuthor(String author) { 
+        this.author = author; 
+    }
 
-    // Getters and setters
-    public int getIsbn() { return isbn; }
-    public void setIsbn(int isbn) { this.isbn = isbn; }
+    public String getPublisher() { 
+        return publisher;
+    }
+    public void setPublisher(String publisher) { 
+        this.publisher = publisher; 
+    }
 
-    public String getTitle() { return title; }
-    public void setTitle(String title) { this.title = title; }
+    public int getPublicationYear() { 
+        return publicationYear; 
+    }
+    public void setPublicationYear(int publicationYear) { 
+        this.publicationYear = publicationYear; 
+    }
 
-    public String getAuthor() { return author; }
-    public void setAuthor(String author) { this.author = author; }
+    public int getQuantity() { 
+        return quantity; 
+    }
+    public void setQuantity(int quantity) { 
+        this.quantity = quantity; 
+    }
 
-    public String getPublisher() { return publisher; }
-    public void setPublisher(String publisher) { this.publisher = publisher; }
-
-    public int getPublicationYear() { return publicationYear; }
-    public void setPublicationYear(int publicationYear) { this.publicationYear = publicationYear; }
-
-    public int getQuantity() { return quantity; }
-    public void setQuantity(int quantity) { this.quantity = quantity; }
-
-    public boolean isAvailable() { return available; }
+    public boolean isAvailable() { 
+        return available; 
+    }
     public void setAvailable(boolean available) { this.available = available; }
 }
 
@@ -112,23 +134,7 @@ class Library {
 
     // Methods for managing members
     public void addMember(Member member) { members.add(member); }
-    public void removeMember(int memberId) { members.removeIf(member -> member.getMemberId() == memberId); }
-    public Member searchMemberById(int memberId) {
-        for (Member member : members) {
-            if (member.getMemberId() == memberId) return member;
-        }
-        return null;
-        
-    }
-    // Methods for managing staff
-    public void addStaff(Staff staffMember) { staff.add(staffMember); }
-    public void removeStaff(int staffId) { staff.removeIf(staffMember -> staffMember.getStaffId() == staffId); }
-    public Staff searchStaffById(int staffId) {
-        for (Staff staffMember : staff) {
-            if (staffMember.getStaffId() == staffId) return staffMember;
-        }
-        return null;
-    }
+   public void addStaff(Staff staffMember) { staff.add(staffMember); }
 }
 public class Main1 {
     public static void main(String[] args) {
@@ -219,9 +225,7 @@ public class Main1 {
     while (true) {
         System.out.println("\nStaff Menu:");
         System.out.println("1. Add Staff");
-        System.out.println("2. Remove Staff");
-        System.out.println("3. Search Staff by ID");
-        System.out.println("4. Back to Main Menu");
+        System.out.println("2. Back to Main Menu");
         System.out.print("Enter your choice: ");
         int choice = scanner.nextInt();
         scanner.nextLine(); // Consume newline
@@ -231,12 +235,6 @@ public class Main1 {
                 addStaff(library, scanner);
                 break;
             case 2:
-                removeStaff(library, scanner);
-                break;
-            case 3:
-                searchStaff(library, scanner);
-                break;
-            case 4:
                 return; // Go back to the main menu
             default:
                 System.out.println("Invalid choice. Please try again.");
@@ -308,24 +306,4 @@ public class Main1 {
     library.addStaff(new Staff(staffId, name, email, phone));
     System.out.println("Staff added successfully.");
 }
-
-private static void removeStaff(Library library, Scanner scanner) {
-    System.out.print("Enter Staff ID to remove: ");
-    int staffId = scanner.nextInt();
-    library.removeStaff(staffId);
-    System.out.println("Staff removed successfully.");
-}
-
-private static void searchStaff(Library library, Scanner scanner) {
-    System.out.print("Enter Staff ID to search: ");
-    int staffId = scanner.nextInt();
-    Staff staff = library.searchStaffById(staffId);
-    if (staff != null) {
-        System.out.println("Staff found: " + staff.getName());
-    } else {
-        System.out.println("Staff not found.");
-    }
-}
-
-
 }
